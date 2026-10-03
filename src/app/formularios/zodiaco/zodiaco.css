@@ -1,0 +1,87 @@
+/* Contenedor principal en dos columnas */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Línea divisora central */
+.divider {
+  width: 3px;
+  background-color: #000;
+  align-self: stretch;
+}
+
+/* Sección Formulario */
+.form-section {
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 150px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+/* Fecha en 3 columnas */
+.fecha-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.fecha-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fecha-container input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+/* Radio buttons centrados */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: flex-start;
+  margin: 0 auto;
+  width: 120px;
+}
+
+/* Botón simple */
+button {
+  margin-top: 20px;
+  padding: 6px 30px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 3px solid #000;
+  cursor: pointer;
+}
+
+/* Sección Resultados */
+.results-section {
+  text-align: center;
+  font-size: 18px;
+}
+
+.results-section img {
+  vertical-align: middle;
+}

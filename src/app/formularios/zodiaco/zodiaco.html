@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <section>
+    <div class="form-box">
+    <h1>ZODIACO CHINO</h1>
+      <h3>Datos Personales</h3>
+      <form>
+        <label for="1">Nombre</label>
+        <input type="text" [(ngModel)]="nombre" name="nombre" id="1" placeholder="Nombre">
+
+        <label for="2">Apellido Paterno</label>
+        <input type="text" [(ngModel)]="aPaterno" name="aPaterno" id="2" placeholder="Apellido Paterno">
+
+        <label for="3">Apellido Materno</label>
+        <input type="text" [(ngModel)]="aMaterno" name="aMaterno" id="3" placeholder="Apellido Materno">
+
+        <h4>Fecha de nacimiento</h4>
+        <label for="4">Día</label>
+        <input type="number" [(ngModel)]="dia" name="dia" id="4">
+
+        <label for="5">Mes</label>
+        <input type="number" [(ngModel)]="mes" name="mes" id="5">
+
+        <label for="6">Año</label>
+        <input type="number" [(ngModel)]="anio" name="anio" id="6">
+
+        <h4>Sexo</h4>
+        <input type="radio" [(ngModel)]="sexo" name="sexo" value="Masculino" id="7"> Masculino
+        <input type="radio" [(ngModel)]="sexo" name="sexo" value="Femenino" id="8"> Femenino
+      </form>
+
+      <button (click)="imprimir()">Imprimir</button>
+      
+      </div>
+    </section>
+    <hr>
+    <section>
+      <p>Hola <strong>{{ nombreCompleto }}</strong></p>
+      <p>Tienes <strong>{{ edad }}</strong> años</p>
+      <p>tu signo zodiacal</p>
+      <p> Es {{ signo }} <img [src]="imagenSigno" width="80"> </p>
+    </section>
+  </div>
+</div>
