@@ -1,0 +1,104 @@
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+ 
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">
+    Lista Alumnos
+  </h1>
+ 
+  <form [[formGroup]="formulario"]>
+ 
+    <!-- Matricula -->
+    <div class="mb-5">
+ 
+      <label
+        for="1"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Matricula
+      </label>
+ 
+      <input
+        type="text"
+        id="1"
+        name="matricula"
+        formControlName="matricula"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Matricula"
+      >
+    </div>
+
+        <!-- Nombre -->
+    <div class="mb-5">
+ 
+      <label
+        for="2"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Nombre
+      </label>
+ 
+      <input
+        type="text"
+        id="2"
+        name="nombre"
+        formControlName="mombre"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Nombre"
+      >
+    </div>
+
+        <!-- Correo -->
+    <div class="mb-5">
+ 
+      <label
+        for="3"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Correo
+      </label>
+ 
+      <input
+        type="email"
+        id="3"
+        name="correo"
+        formControlName="correo"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Correo"
+      >
+    </div>
+
+        <!-- Materia -->
+    <div class="mb-5">
+ 
+      <label
+        for="4"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Materia
+      </label>
+ 
+      <input
+        type="text"
+        id="4"
+        name="materia"
+        formControlName="materia"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Materia"
+      >
+    </div>
+ 
+ 
+    
+ 
+  </form>
+
+  <button class="btn">Registrar</button>
+ 
+</div>
