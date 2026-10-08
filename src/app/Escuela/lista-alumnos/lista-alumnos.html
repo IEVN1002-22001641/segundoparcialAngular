@@ -4,13 +4,13 @@
     Lista Alumnos
   </h1>
  
-  <form [[formGroup]="formulario"]>
+  <form [formGroup]="formulario">
  
     <!-- Matricula -->
     <div class="mb-5">
  
       <label
-        for="1"
+        for="matricula"
         class="block mb-2 text-sm font-medium text-gray-900"
       >
         Matricula
@@ -18,13 +18,13 @@
  
       <input
         type="text"
-        id="1"
+        id="matricula"
         name="matricula"
         formControlName="matricula"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="Matricula"
+        placeholder="22008967"
       >
     </div>
 
@@ -32,7 +32,7 @@
     <div class="mb-5">
  
       <label
-        for="2"
+        for="nombre"
         class="block mb-2 text-sm font-medium text-gray-900"
       >
         Nombre
@@ -40,9 +40,9 @@
  
       <input
         type="text"
-        id="2"
+        id="nombre"
         name="nombre"
-        formControlName="mombre"
+        formControlName="nombre"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -54,7 +54,7 @@
     <div class="mb-5">
  
       <label
-        for="3"
+        for="correo"
         class="block mb-2 text-sm font-medium text-gray-900"
       >
         Correo
@@ -62,7 +62,7 @@
  
       <input
         type="email"
-        id="3"
+        id="correo"
         name="correo"
         formControlName="correo"
         required
@@ -76,7 +76,7 @@
     <div class="mb-5">
  
       <label
-        for="4"
+        for="materia"
         class="block mb-2 text-sm font-medium text-gray-900"
       >
         Materia
@@ -84,21 +84,23 @@
  
       <input
         type="text"
-        id="4"
+        id="materia"
         name="materia"
         formControlName="materia"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="Materia"
+        placeholder="Programación"
       >
     </div>
  
- 
-    
- 
   </form>
 
-  <button class="btn">Registrar</button>
+  <h1>Lista Alumno</h1>
+  <h2>Matricula: {{nuevoAlumno.matricula}}</h2>
+  <h2>Nombre: {{nuevoAlumno.nombre}}</h2>
+  <h2>Correo: {{nuevoAlumno.correo}}</h2>
+  <h2>Materia: {{nuevoAlumno.materia}}</h2>
+  <button (click)="muestraAlumnos()" class="btn">Registrar</button>
  
 </div>
