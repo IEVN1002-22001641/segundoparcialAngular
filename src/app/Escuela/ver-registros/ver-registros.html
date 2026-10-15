@@ -1,0 +1,167 @@
+<div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow mt-8">
+  
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Registros de Compras - Cinépolis
+    </h1>
+    <a routerLink="../cinepolis" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+      Nuevo Registro
+    </a>
+  </div>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      
+      <!-- Encabezado -->
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th scope="col" class="px-6 py-3">Nombre</th>
+          <th scope="col" class="px-6 py-3">Cantidad Compradores</th>
+          <th scope="col" class="px-6 py-3">Tarjeta Cineco</th>
+          <th scope="col" class="px-6 py-3">Cantidad Boletos</th>
+          <th scope="col" class="px-6 py-3">Acciones</th>
+        </tr>
+      </thead>
+
+      
+      <tbody>
+        <tr *ngFor="let item of cinepolis; let i = index" class="bg-white border-b border-gray-200 hover:bg-gray-50">
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            {{ item.nombre }}
+          </td>
+          <td class="px-6 py-4">
+            {{ item.cc }}
+          </td>
+          <td class="px-6 py-4">
+            {{ item.cineco ? 'Sí' : 'No' }}
+          </td>
+          <td class="px-6 py-4">
+            {{ item.cb }}
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex gap-2">
+              <!-- Editar -->
+              <button
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+                (click)="editarCompradores(i)"
+              >
+                Editar
+              </button>
+
+              <!-- Eliminar -->
+              <button
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+                (click)="eliminarComprador(i)"
+              >
+                Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- Mensaje cuando no existen registros -->
+  <div *ngIf="cinepolis.length === 0" class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
+    <span class="font-medium">Información:</span> No hay compras registradas.
+  </div>
+
+</div>
+
+
+
+<div *ngIf="mostrarModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full mx-4">
+    
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Editar Registro de Cine</h2>
+
+    <form>
+      <!-- Nombre -->
+      <div class="mb-4">
+        <label for="modalNombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+        <input
+          type="text"
+          id="modalNombre"
+          [(ngModel)]="registroEditando.nombre"
+          name="nombre"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+        >
+      </div>
+
+      <!-- Cantidad Compradores -->
+      <div class="mb-4">
+        <label for="modalCc" class="block mb-2 text-sm font-medium text-gray-900">Cantidad Compradores</label>
+        <input
+          type="number"
+          id="modalCc"
+          [(ngModel)]="registroEditando.cc"
+          name="cc"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+        >
+      </div>
+
+      
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-medium text-gray-900">¿Cuenta con tarjeta Cineco?</label>
+        <div class="flex items-center gap-4">
+          <label class="flex items-center text-sm font-medium text-gray-900">
+            <input
+              type="radio"
+              [(ngModel)]="registroEditando.cineco"
+              [value]="true"
+              name="cineco"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 mr-1"
+            > Sí
+          </label>
+          <label class="flex items-center text-sm font-medium text-gray-900">
+            <input
+              type="radio"
+              [(ngModel)]="registroEditando.cineco"
+              [value]="false"
+              name="cineco"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 mr-1"
+            > No
+          </label>
+        </div>
+      </div>
+
+
+      <div class="mb-5">
+        <label for="modalCb" class="block mb-2 text-sm font-medium text-gray-900">Cantidad Boletos</label>
+        <input
+          type="number"
+          id="modalCb"
+          [(ngModel)]="registroEditando.cb"
+          name="cb"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+        >
+      </div>
+
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+          (click)="cerrarModal()"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+          (click)="guardarEdicion()"
+        >
+          Guardar Cambios
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

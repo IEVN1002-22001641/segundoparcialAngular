@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 import { Alumno } from '../alumno';
 import { materialize } from 'rxjs';
 
+
 @Component({
   selector: 'app-lista-alumnos',
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
@@ -100,6 +101,12 @@ export class ListaAlumnos implements OnInit {
       correo: '',
       materia: '',
     };
+    this.formulario.patchValue({
+      matricula: this.nuevoAlumno.matricula,
+      nombre: this.nuevoAlumno.nombre,
+      correo: this.nuevoAlumno.correo,
+      materia: this.nuevoAlumno.materia
+    })
     this.indiceEdicion = -1;
   }
 }
