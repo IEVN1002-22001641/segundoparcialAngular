@@ -1,0 +1,49 @@
+<div class="min-h-screen flex justify-center items-center bg-gray-50 p-4">
+  <!-- Tarjeta (Card) -->
+  <div class="bg-white block max-w-md w-full p-6 border border-gray-200 rounded-xl shadow-lg">
+    
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">Eliminar Alumno</h2>
+      <p class="text-sm text-red-600 mt-1">¿Estás seguro de que deseas eliminar este registro?</p>
+    </div>
+
+    <div class="space-y-3 mb-6 bg-gray-50 p-4 rounded-lg border border-gray-100">
+      <h5 class="text-lg font-semibold text-slate-800 border-b pb-2">
+        Matrícula: <span class="text-blue-600">{{ regAlumno.matricula }}</span>
+      </h5>
+      <p class="text-sm text-slate-700">
+        <strong>Nombre:</strong> {{ regAlumno.nombre }}
+      </p>
+      <p class="text-sm text-slate-700">
+        <strong>Apellido Paterno:</strong> {{ regAlumno.apaterno }}
+      </p>
+      <p class="text-sm text-slate-700">
+        <strong>Apellido Materno:</strong> {{ regAlumno.amaterno }}
+      </p>
+      <p class="text-sm text-slate-700">
+        <strong>Correo electrónico:</strong> {{ regAlumno.correo }}
+      </p>
+    </div>
+
+    <!-- Contenedor de Botones (Cancelar y Eliminar) -->
+    <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+      <!-- Botón Cancelar -->
+      <a
+        [routerLink]="['/utl/alumnos']"
+        class="text-slate-700 bg-white border border-gray-300 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition-colors"
+      >
+        Cancelar
+      </a>
+
+      <!-- Botón Eliminar (Faltaba este) -->
+      <button
+        type="button"
+        (click)="eliminarConfirmado()"
+        class="text-white bg-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition-colors shadow-sm"
+      >
+        Eliminar definitivamente
+      </button>
+    </div>
+
+  </div>
+</div>

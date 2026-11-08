@@ -1,0 +1,131 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-6">
+    <!-- Encabezado con Título y Botón Agregar -->
+    <div
+      class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 border-b border-gray-200 pb-4"
+    >
+      <h1 class="text-2xl font-bold text-gray-800 tracking-wide">{{ alumnoTitle }}</h1>
+      <a
+        [routerLink]="['/utl/agregar']"
+        class="inline-flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-all shadow-sm cursor-pointer"
+      >
+        <svg
+          class="w-5 h-5 text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+        Agregar Alumno
+      </a>
+    </div>
+
+    <div class="card-body">
+      <!-- Sección de Filtrado -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6 items-center bg-gray-50 p-4 rounded-lg border border-gray-100"
+      >
+        <div class="md:col-span-2 font-semibold text-gray-700 text-sm">Filtrar por:</div>
+        <div class="md:col-span-6">
+          <input
+            [(ngModel)]="listFilter"
+            type="text"
+            class="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            placeholder="Ingrese nombre del alumno..."
+          />
+        </div>
+        <div class="md:col-span-4 text-gray-600 font-medium text-sm">
+          <span *ngIf="listFilter"
+            >Filtro actual: <strong class="text-blue-600">{{ listFilter }}</strong></span
+          >
+        </div>
+      </div>
+
+      <!-- Tabla de Datos -->
+      <div class="overflow-x-auto border border-gray-200 rounded-lg shadow-sm">
+        <table class="min-w-full divide-y divide-gray-200 text-left text-sm text-gray-600">
+          <thead class="bg-gray-100 text-gray-700 uppercase font-bold text-xs tracking-wider">
+            <tr>
+              <th scope="col" class="px-6 py-3.5">
+                <button
+                  type="button"
+                  (click)="showImage()"
+                  class="px-3 py-1.5 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition font-medium text-xs"
+                >
+                  {{ muestraImg ? 'Ocultar' : 'Mostrar' }} Imagen
+                </button>
+              </th>
+              <th scope="col" class="px-6 py-3.5">Matrícula</th>
+              <th scope="col" class="px-6 py-3.5">Nombre</th>
+              <th scope="col" class="px-6 py-3.5">Apaterno</th>
+              <th scope="col" class="px-6 py-3.5">Amaterno</th>
+              <th scope="col" class="px-6 py-3.5">Correo</th>
+              <th scope="col" class="px-6 py-3.5 text-center">Editar</th>
+              <th scope="col" class="px-6 py-3.5 text-center">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <tr
+              *ngFor="let alumno of alumnosIric | alumnoFilter: listFilter"
+              class="hover:bg-gray-50 transition-colors"
+            >
+              <td class="px-6 py-4 whitespace-nowrap">
+                <img
+                  *ngIf="muestraImg"
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.gif"
+                  [style.width.px]="imagewidth"
+                  [style.margin.px]="imageMargin"
+                  alt="avatar"
+                  class="rounded-full shadow-sm"
+                />
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">
+                {{ alumno.matricula }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ alumno.nombre }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ alumno.apaterno }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ alumno.amaterno }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-gray-500">{{ alumno.correo }}</td>
+
+              <!-- Botón Editar -->
+              <td class="px-6 py-4 whitespace-nowrap text-center">
+                <a
+                  [routerLink]="['/utl/editar', alumno.matricula]"
+                  class="inline-flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-3.5 py-2 rounded-lg shadow-sm transition"
+                >
+                  Editar
+                </a>
+              </td>
+
+              <!-- Botón Eliminar -->
+              <td class="px-6 py-4 whitespace-nowrap text-center">
+                <button
+                  type="button"
+                  [routerLink]="['/utl/eliminar', alumno.matricula]"
+                  class="inline-flex items-center gap-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium px-3.5 py-2 rounded-lg shadow-sm transition"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+
+            <!-- Mensaje si no hay registros -->
+            <tr *ngIf="!alumnosIric || alumnosIric.length === 0">
+              <td colspan="8" class="px-6 py-8 text-center text-gray-400 font-medium">
+                No se encontraron registros de alumnos.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
